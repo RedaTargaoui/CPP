@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <fstream>
 
 using namespace std;
 
@@ -29,7 +30,7 @@ class Liste{
 		void modifier( string s , int x );
 		void operator+=( string s );
 		void operator-=( int x );
-		void afficher();
+		void ajout_fich();
 };
 
 void Liste ::ajout_deb(string s){
@@ -81,7 +82,7 @@ void Liste ::supp(int x){
 		P = P->next ;	
 	}
 	if ( P == NULL ){
-		cout<<"                                                   Valeur non trouvee "<<endl;
+		cout<<"_________Valeur non trouvee___________ "<<endl;
 	}
 	if ( PP == NULL ){
 		start = start->next ;
@@ -104,7 +105,7 @@ void Liste ::modifier(string s,int x){
 		N = N->next;
 	}
 	if ( N == NULL ){
-		cout<<"                                                   Valeur non trouvee "<<endl;
+		cout<<"_________Valeur non trouvee___________ "<<endl;
 	}
 	if ( NP == NULL ){
 		start = start->next;
@@ -122,26 +123,41 @@ void Liste ::operator-=(int x){
 	supp(x);
 }
 
-void Liste ::afficher(){
+void Liste ::ajout_fich(){
+	ofstream File("datacpp.txt");
 	Noeud * P ;
 	P = start ;
 	int i = 1 ;
 	while ( P != NULL ){
-		cout<<i<<" - "<< P->c <<endl;
+		File << P->c <<endl;
 		P = P->next;
 		i++;
 	}
 }
 
+void affich_fich(){
+    string cont;
+    ifstream ReadFile("datacpp.txt");
+    int i=1;
+    while ( getline(ReadFile, cont) ) {
+        cout <<i<<"- "<<cont<<endl;
+        i++;
+   }
+   ReadFile.close();
+}
+
+
 int main(){
 	cout<<"__________________________________________Bienvenue dans notre APP_____________________________________________"<<endl;
-	Liste L ;
-	string s1 = "Website to post publications with JS and PHP " ;
-	string s2 = "To Do app with C++ " ;
-	string s3 = "Game project with Python " ;
-	L+=s1 ; L+=s2 ; L+=s3 ;
+	Liste L;
 	cout<<"------------------------------------------------------"<<endl;
-	L.afficher();
+    string contenu;
+    ifstream ReadFile("datacpp.txt");
+    while ( getline(ReadFile, contenu) ) {
+        L.ajout_fin(contenu);
+   }
+   ReadFile.close();
+	affich_fich();
 	cout<<"------------------------------------------------------"<<endl;
 	cout<<"-> Pour le moment la liste contient "<<L.nb_elem()<<" element . "<<endl;
 	int cont = 1;
@@ -155,7 +171,8 @@ int main(){
 		    cin>>s ;
 		    L+=s;
 		    cout<<"------------------------------------------------------"<<endl;
-    	    L.afficher();
+		    L.ajout_fich();
+		    affich_fich();
     	    cout<<"------------------------------------------------------"<<endl;
     	    cout<<"-> Pour le moment la liste contient "<<L.nb_elem()<<" element . "<<endl;
 	    }
@@ -165,7 +182,8 @@ int main(){
 		    cin>>x;
 		    L-=x;
 		    cout<<"------------------------------------------------------"<<endl;
-		    L.afficher();
+            L.ajout_fich();
+		    affich_fich();  
 		    cout<<"------------------------------------------------------"<<endl;
 	    }
 	    else if ( rep == "modif" || rep =="Modifier" || rep == "modfier" ){
@@ -177,7 +195,8 @@ int main(){
 	    	cin>>modif;
 	    	L.modifier(modif,x);
 		    cout<<"------------------------------------------------------"<<endl;
-		    L.afficher();
+            L.ajout_fich();
+		    affich_fich(); 
 		    cout<<"------------------------------------------------------"<<endl;
 		}
 	    cout<<"->Pour continuer taper 1 , pour arreter taper 0 : " ;
