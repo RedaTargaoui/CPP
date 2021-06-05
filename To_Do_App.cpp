@@ -140,7 +140,7 @@ void affich_fich(){
     ifstream ReadFile("datacpp.txt");
     int i=1;
     while ( getline(ReadFile, cont) ) {
-        cout <<i<<"- "<<cont<<endl;
+        cout <<"                                   "<<i<<"- "<<cont<<endl;
         i++;
    }
    ReadFile.close();
@@ -150,7 +150,7 @@ void affich_fich(){
 int main(){
 	cout<<"__________________________________________Bienvenue dans notre APP_____________________________________________"<<endl;
 	Liste L;
-	cout<<"------------------------------------------------------"<<endl;
+	cout<<"                               -----------------------------------------------------------------------------"<<endl;
     string contenu;
     ifstream ReadFile("datacpp.txt");
     while ( getline(ReadFile, contenu) ) {
@@ -158,7 +158,7 @@ int main(){
    }
    ReadFile.close();
 	affich_fich();
-	cout<<"------------------------------------------------------"<<endl;
+	cout<<"                               ------------------------------------------------------------------------------"<<endl;
 	cout<<"-> Pour le moment la liste contient "<<L.nb_elem()<<" element . "<<endl;
 	int cont = 1;
 	while ( cont != 0 ){
@@ -170,10 +170,10 @@ int main(){
 		    cout<<"-> Taper une note a ajouter : ";
 		    cin>>s ;
 		    L+=s;
-		    cout<<"------------------------------------------------------"<<endl;
+		    cout<<"                               -----------------------------------------------------------------------------"<<endl;
 		    L.ajout_fich();
 		    affich_fich();
-    	    cout<<"------------------------------------------------------"<<endl;
+    	    cout<<"                               -----------------------------------------------------------------------------"<<endl;
     	    cout<<"-> Pour le moment la liste contient "<<L.nb_elem()<<" element . "<<endl;
 	    }
 	    else if ( rep == "supp" || rep == "supprimer" || rep == "Supprimer" ){
@@ -181,10 +181,10 @@ int main(){
 		    cout<<"-> Entrez l'indice de l'element a supprimer : ";
 		    cin>>x;
 		    L-=x;
-		    cout<<"------------------------------------------------------"<<endl;
+		    cout<<"                               -----------------------------------------------------------------------------"<<endl;
             L.ajout_fich();
 		    affich_fich();  
-		    cout<<"------------------------------------------------------"<<endl;
+		    cout<<"                               -----------------------------------------------------------------------------"<<endl;
 	    }
 	    else if ( rep == "modif" || rep =="Modifier" || rep == "modfier" ){
 	    	string modif;
@@ -194,10 +194,10 @@ int main(){
 	    	cout<<"Entrez La nouvelle note: ";
 	    	cin>>modif;
 	    	L.modifier(modif,x);
-		    cout<<"------------------------------------------------------"<<endl;
+		    cout<<"                               -----------------------------------------------------------------------------"<<endl;
             L.ajout_fich();
 		    affich_fich(); 
-		    cout<<"------------------------------------------------------"<<endl;
+		    cout<<"                               -----------------------------------------------------------------------------"<<endl;
 		}
 	    cout<<"->Pour continuer taper 1 , pour arreter taper 0 : " ;
 	    cin>>cont;
